@@ -8,11 +8,32 @@ $(document).ready(function() {
 /*
  * Function that is called when the document is ready.
  */
-function initializePage() {
-	$("#testjs").click(function(e) {
-		$('.jumbotron h1').text("Javascript is connected");
-	});
 
+ function initializePage() {
+	function projectClick(e) {
+    // prevent the page from reloading      
+    e.preventDefault();
+    // In an event handler, $(this) refers to      
+    // the object that triggered the event      
+    var containingProject = $(this).closest(".project");
+    containingProject.append("<div class='project-description'><p>Description of the project.</p></div>");
+	if (description.length == 0) {
+       $(containingProject).html("<div class='project-description'><p>Description of the project.</p></div>");
+    } 
+    else {
+        $(containingProject).hide();
+    }
+}
+
+$("#testjs").click(function(e) {
+		$('.jumbotron h1').text("Javascript has taken control");
+		$("#testjs").text("Please wait...");
+		$(".jumbotron p").toggleClass("active");
+
+	});
 	// Add any additional listeners here
 	// example: $("#div-id").click(functionToCall);
+	$("a.thumbnail").click(projectClick);
+	
+
 }
